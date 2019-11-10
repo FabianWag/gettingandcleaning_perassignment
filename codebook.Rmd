@@ -1,0 +1,96 @@
+---
+title: "codebook"
+author: "Fabian Wagner"
+date: "11/10/2019"
+output: html_document
+---
+
+
+# Codebook for Peer Review Assignment of the Coursera Course "Getting and Cleaning Data"
+
+See README for some background information about this project and the original data set
+
+
+run_analysis produces a "tidydata.txt" file. The data frame contains mean values by subject and activity for different variables explained in the following section "Variables". Steps of the script are described in section "Script"
+
+
+## Variables:
+
+activity:
+  6 factors
+    - walking
+    - walking upstairs
+    - walking downstars
+    - sitting
+    - standing
+    - laying
+    
+subject:
+  subjectID
+  
+Variables 3-66:
+
+Details follow - Important information beforehand, every Variable ends with "_mean" as the value
+represents an aggregated mean value from the original data.
+
+(Detailed description taken from the original Codebook)
+
+### Feature Selection 
+
+
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value
+std(): Standard deviation
+
+
+## Script
+
+The original data set roughly went to 5 steps:
+
+1. merging the data
+2. extraction of variables that only contain mean and standard deviation of measurements
+3. using descriptive labels for activity
+4. using descriptive variable names
+5. transform in a tidydataset which only consists of one (mean) value per subject and activity
+
+1.
+The Original data was downloaded and unzipped. The training and test data (including subject information) were merged to one dataset.
+
+2. (and 4.)
+The feature names (variable names) were contained in an txt file. These were used for extraction of only mean and standard deviation values. The names are already descriptive. Detailed information can be seen in section "Variables" and in the description of the original dataset.
+
+3.
+Activity levels were changed from integer to factor with labels containing human-interpretable information.
+
+5.
+this data was then used for grouping the data by subject and activity and calculating a mean value for all variables
+
+
